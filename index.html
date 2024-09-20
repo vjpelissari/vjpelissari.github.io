@@ -1,78 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body style="font-family: 'Courier New', monospace; font-size: 15px;">
-    <h3>NOTEPAD++</h3>
-    <pre>
-    Regular Expression ..... \s+$ ............      ......... delete spaces at the end of the line.
-    Regular Expression ..... \s+$|^\s+ .......      ......... delete spaces at the end and beggining of the line.
-    Regular Expression ..... (.+) ............ \1,  ......... put comma at the end of line.
-    Regular Expression ..... (.+) ............ "\1" ......... suround the line with "".
-    Regular Expression ..... (\d)$ ........... \1,  ......... if there is a digit at the end of the line, add a comma. 
-    Regular Expression ..... ^\s*$\r?\n ......      ......... delete blank lines.
-    Regular Expression ..... ^(.{10})$ ....... 0\1  ......... add left zero to a cpf with 10 digits.
-    Regular Expression ..... ^(\d{9,10})$ .... 0\1  ......... add left zero to a cpf with 9 or 10 digits. Repeat twice.
-    Regular Expression ..... ^\s ............. \t   ......... macth o space at the beggining of the line and replace it with a tab.
-    Extended................ \r\n ............      ......... put all lines together.
-    Normal ................. \t .............. \n   ......... replace tab for break line.
-    </pre>
-    <h3>GIT</h3>
-    <pre>
-    CREATE A VERY NEW REPOSITORY
-
-        1. Go to github and create a new repository. Add name and description.
-        2. Create a folder on local machine. Put the initial files for the project there.
-        3. Open the terminal in the folder and type:
-
-        # git init
-        # git add .
-        # git commit -m "Initial commit"
-
-        Copy the lines below from the GitHub repository page you just created:
-
-        # git remote add origin https://github.com/vjpelissari/flixx-app.git
-        # git branch -M main
-        # git push -u origin main
+    <title>Simple Page with Fixed Menu</title>
+    <link rel="stylesheet" href="styles.css">
     
-    CLONE
+</head>
+<body>
+    <div class="container">
+        <div class="menu">
+            <a href="#section1">Notepad++</a>
+            <a href="#section2">GIT</a>
+            <a href="#section3">VS Code Shortcuts</a>
+            <a href="#section4">Postman</a>
+        </div>
+        <div class="content">
 
-        # git clone "git repo url"
+<div id="section1" class="section">
+<h2>Notepad++</h2>
+<pre>
+Regular Expression ..... \s+$ ............      ......... delete spaces at the end of the line.
+Regular Expression ..... \s+$|^\s+ .......      ......... delete spaces at the end and beggining of the line.
+Regular Expression ..... (.+) ............ \1,  ......... put comma at the end of line.
+Regular Expression ..... (.+) ............ "\1" ......... suround the line with "".
+Regular Expression ..... (\d)$ ........... \1,  ......... if there is a digit at the end of the line, add a comma. 
+Regular Expression ..... ^\s*$\r?\n ......      ......... delete blank lines.
+Regular Expression ..... ^(.{10})$ ....... 0\1  ......... add left zero to a cpf with 10 digits.
+Regular Expression ..... ^(\d{9,10})$ .... 0\1  ......... add left zero to a cpf with 9 or 10 digits. Repeat twice.
+Regular Expression ..... ^\s ............. \t   ......... macth o space at the beggining of the line and replace it with a tab.
+Extended................ \r\n ............      ......... put all lines together.
+Normal ................. \t .............. \n   ......... replace tab for break line.
+</pre>
+</div>
 
-    COMMITS
+<div id="section2" class="section">
+<h2>GIT</h2>
+<pre>
+CREATE A VERY NEW REPOSITORY
 
-        # git add .
-        # git commit -m "Commit description"
-        # git push
+    1. Go to github and create a new repository. Add name and description.
+    2. Create a folder on local machine. Put the initial files for the project there.
+    3. Open the terminal in the folder and type:
 
-    FETCH
+    # git init
+    # git add .
+    # git commit -m "Initial commit"
 
-        # git fetch origin
-        # git merge origin/main
-        
-    CHECK IF THE BRANCH IS A COMMIT BEHIND
+    Copy the lines below from the GitHub repository page you just created:
 
-        # git fetch origin
-        # git status
-        # git log HEAD..origin/main
+    # git remote add origin https://github.com/vjpelissari/flixx-app.git
+    # git branch -M main
+    # git push -u origin main
 
-    CHECK LAST COMMIT LOG
+CLONE
 
-        # git log -1
-    </pre>
-    <h3>VS CODE SHORTCUTS</h3>
-    <pre>
-    control + shift + k ............. delete line
-    shift + alt + up or down ........ duplicate line
-    alt + up or down ................ move line
-    shift + alt + a ................. block commnet
+    # git clone "git repo url"
 
-    </pre>
+COMMITS
+
+    # git add .
+    # git commit -m "Commit description"
+    # git push
+
+FETCH
+
+    # git fetch origin
+    # git merge origin/main
+    
+CHECK IF THE BRANCH IS A COMMIT BEHIND
+
+    # git fetch origin
+    # git status
+    # git log HEAD..origin/main
+
+CHECK LAST COMMIT LOG
+
+    # git log -1
+</pre>
+</div>
+
+<div id="section3" class="section">
+<h2>VS Code Shortcuts</h2>
+<pre>
+control + shift + k ............. delete line
+shift + alt + up or down ........ duplicate line
+alt + up or down ................ move line
+shift + alt + a ................. block commnet
+</pre>
+</div>
+
+<div id="section4" class="section">
+<h2>Postman</h2>
+<pre>
+POSTMAN PRE SCRIPT AUTENTICATION
+
+	Select Collection;
+	
+	Select "Autorization" tab:
+	
+		Auth Type: Bearer Token
+		Token: {{BEARERTOKEN}}
+	
+	Select "Script" tab;
+	
+	Select Pre-Request, and then paste:
+	
+		pm.sendRequest({
+		url: "https://interface.siltecnologia.com.br/v1/api/authenticate",
+		method: 'POST',
+		header: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		body: {
+			mode: 'urlencoded',
+			urlencoded: [
+				{key: 'client_id', value: 'Agapevilavelha'},
+				{key: 'client_secret', value: 'cRDtpNCeBiql5KOQsKVyrA0sAiA='},
+				{key: 'scope', value: 'pmvilavelha'},
+				{key: 'grant_type', value: 'client_credentials'}
+				]
+			}
+		},
+		(err, res) => {
+			// Set BEARERTOKEN
+			pm.globals.set("BEARERTOKEN", res.json().access_token)
+			// console.log(res.json());
+		});
+		
+	Every other child from collection (folder and request), select in "Autorization" tab:
+	
+		Auth Type: "Inherit auth from parent"
+</pre>
+
+</div>
+
+
+
+</div>
+</div>
 </body>
-
 </html>
