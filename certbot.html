@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certbot Installation Guide</title>
+    <link rel="stylesheet" href="content-styles.css">
+</head>
+<body>
+    <h1 id="install-snap">Install Certbot Using Snap</h1>
+
+    <h2>1. Ensure Snap is Installed</h2>
+    <p>Ubuntu typically comes with Snap pre-installed. Check if it's available:</p>
+    <pre><code>snap version</code></pre>
+    <p>If Snap is not installed, run the following commands:</p>
+    <pre> <code>
+sudo apt update
+sudo apt install snapd
+sudo snap install core
+sudo snap refresh core</code>
+	</pre>
+
+    <h2>2. Remove Any Old Certbot Installations</h2>
+    <p>If you previously attempted to install Certbot via <code>apt</code>, remove it:</p>
+    <pre><code>sudo apt remove certbot</code></pre>
+
+    <h2>3. Install Certbot Using Snap</h2>
+    <p>Install Certbot using Snap with the following command:</p>
+    <pre><code>sudo snap install --classic certbot</code></pre>
+
+    <h2>4. Create a Symlink for Certbot</h2>
+    <p>Create a symbolic link for easier access:</p>
+    <pre><code>sudo ln -s /snap/bin/certbot /usr/bin/certbot</code></pre>
+
+    <h2>5. Run Certbot</h2>
+    <p>For Nginx, run:</p>
+    <pre><code>sudo certbot --nginx</code></pre>
+    
+	<h2>6. Test your domain</h2>
+    <p>URL:</p>
+    <pre><code>https://www.ssllabs.com/ssltest/</code></pre>
+	
+</body>
+</html>

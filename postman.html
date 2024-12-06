@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postman</title>
+    <link rel="stylesheet" href="content-styles.css">
+</head>
+<body>
+    <h1 id="postman">Postman</h1>
+
+    <h2>Postman Pre Script Autentication</h2>
+    <p>Select Collection;</p>
+    <p>Select "Autorization" tab:</p>
+    
+    <pre><code><b>Auth Type:</b> Bearer Token</code></pre>
+    <pre><code><b>Token:</b> {{BEARERTOKEN}}</code></pre>
+    
+    <p>Select "Script" tab</p>
+    <p>Select Pre-Request, and then paste:</p>
+    <pre><code>
+        pm.sendRequest({
+            url: "https://interface.siltecnologia.com.br/v1/api/authenticate",
+            method: 'POST',
+            header: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: {
+                mode: 'urlencoded',
+                urlencoded: [
+                    {key: 'client_id', value: 'Agapevilavelha'},
+                    {key: 'client_secret', value: 'cRDtpNCeBiql5KOQsKVyrA0sAiA='},
+                    {key: 'scope', value: 'pmvilavelha'},
+                    {key: 'grant_type', value: 'client_credentials'}
+                    ]
+                }
+            },
+            (err, res) => {
+                // Set BEARERTOKEN
+                pm.globals.set("BEARERTOKEN", res.json().access_token)
+                // console.log(res.json());
+            });
+    </code></pre>
+    <p>Every other child from collection (folder and request), select in "Autorization" tab:</p>
+    <pre><code><b>Auth Type:</b> "Inherit auth from parent"</code></pre>
+	
+</body>
+</html>

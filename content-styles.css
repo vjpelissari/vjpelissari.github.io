@@ -1,0 +1,33 @@
+/* Content-Specific Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #fff;
+}
+
+h1 {
+    color: #333;
+    margin-top: 0;
+}
+
+h2 {
+    color: #555;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+pre {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+code {
+    font-family: Consolas, monospace;
+    color: #383a42;
+    /*background-color: #f9f2f4;*/
+    padding: 2px 4px;
+    border-radius: 4px;
+}
