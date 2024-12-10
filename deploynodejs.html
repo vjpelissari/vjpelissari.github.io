@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy Node JS on Digital Ocean</title>
+    <link rel="stylesheet" href="content-styles.css">
+</head>
+
+<body>
+    <h1 id="install-snap">Deploy Node JS</h1>
+
+    <h2>Create a new Droplet on digitalocean.com</h2>
+    <p>Follow these steps to create a new droplet on DigitalOcean:</p>
+    <pre><code>https://docs.digitalocean.com/products/droplets/how-to/create/</code></pre>
+    <p>In Authentication Method choose SSH key.</p>
+    <p>But first, we need generate ssh key on Windows 11:</p>
+    <pre><code>ssh-keygen -t rsa -b 4096 -C "your_email@example.com".</code></pre>
+    <p>Give it the name: mykey.</p>
+    <p>It will generate two files in the current folder: "mykey" and "mykey.pub".</p>
+    <p>mykey is the private key.</p>
+    <p>mykey.pub is the public key.</p>
+    <p>Now that the key is created, copy the public key and paste in DigitalOcean plataform.</p>
+    <p>After that we need test the access in digital ocean.</p>
+    <p>First, we need to add key:</p>
+    <p>1. Start OpenSSH Authentication Agent on Windows 11</p>
+    <p>2.Run the command:</p>
+    <pre><code>ssh-add PATH-OF-PRIVATE-KEY</code></pre>
+    <p>This allows the ssh agent to manage the key and perform authentication without requiring you to re-enter the
+        passphrase for the key during each use.</p>
+    <p>Now lets log in to DigitalOcean as root:</p>
+    <pre><code>ssh root@digital_ocean_ip</code></pre>
+
+    <h2>Update Packages</h2>
+    <p>Update Packages (It's usually the first step before installing or upgrading packages using commands like sudo apt
+        upgrade or sudo apt install):</p>
+    <pre><code>sudo apt update</code></pre>
+
+    <h2>Install Nodejs</h2>
+    <p>Get the latest version of Node.js using curl:</p>
+    <pre><code>curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -</code></pre>
+    <p>Once the repository is added, install Node.js with:</p>
+    <pre><code>sudo apt install -y nodejs</code></pre>
+    <p>Check node and npm version:</p>
+    <pre><code>node --version</code></pre>
+    <pre><code>npm --version</code></pre>
+
+    <h2>Clone the Git Repo´s project</h2>
+    <p>Create an 'apps' folder:</p>
+    <pre><code>mkdir apps</code></pre>
+    <p>Clone the app repo to this folder:</p>
+    <pre><code>git clone repo_on_git_hub</code></pre>
+
+    <h2>Running the app</h2>
+    <p>Configure confiv.env file</p>
+    <p>Install dependencies:</p>
+    <pre><code>npm install</code></pre>
+    <p>Run the app to test if is all good:</p>
+    <pre><code>npm start</code></pre>
+
+    <h2>PM2</h2>
+    <p>Install PM2</p>
+    <pre><code>npm i -g pm2</code></pre>
+    <p>Start PM2 with a node app:</p>
+    <pre><code>pm2 start server.js</code></pre>
+    <p>PM2 Status</p>
+    <pre><code>pm2 status</code></pre>
+    <p>Configure PM2 to run when the server starts:</p>
+    <pre><code>pm2 startup ubuntu</code></pre>
+    <p>In case you need the commands bellow:</p>
+    <pre><code>pm2 restart server</code></pre>
+    <pre><code>pm2 logs</code></pre>
+
+    <h2>NGINX</h2>
+    <p>Install nginx for reverse proxy</p>
+    <pre><code>apt install nginx</code></pre>
+    <p>Go to the root (DigitalOcean IP) and check if a mensagem "Welcome to nginx" is displayed</p>
+    <p>Open Configuration nginx file:</p>
+    <pre><code>vim /etc/nginx/sites-avaiable/default</code></pre>
+    <p>Clean all "server" block.</p>
+    <p>paste the code bellow:</p>
+    <pre><code>
+    server_name vintech.lat www.vintech.lat;
+
+    location /pmvv {
+        proxy_pass http://localhost:3000; # Forward traffic to your backend server
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+    </code></pre>
+    <p>Restart nginx server:</p>
+    <pre><code>service nginx restart</code></pre>
+
+
+    <h2>Configure ufw - Uncomplicated Firewall</h2>
+    <p>Check firewall status:</p>
+    <pre><code>ufw status</code></pre>
+    <p>Enable firewall:</p>
+    <pre><code>ufw enable</code></pre>
+    <p>Allow ssh port:</p>
+    <pre><code>ufw allow ssh</code></pre>
+    <p>Check status again:</p>
+    <pre><code>ufw status</code></pre>
+    <p>Allow http port:</p>
+    <pre><code>ufw allow http</code></pre>
+    <p>Allow https port:</p>
+    <pre><code>ufw allow https</code></pre>
+
+
+
+
+
+
+</body>
+
+</html>
