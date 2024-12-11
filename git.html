@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certbot Installation Guide</title>
     <link rel="stylesheet" href="content-styles.css">
 </head>
+
 <body>
 
-<h1 id="git">Git Common Commands</h1>
+    <h1 id="git">Git Common Commands</h1>
 
-<h2>Create a very new repository</h2>
-<p>1. Go to github and create a new repository. Add name and description.</p>
-<p>2. Create a folder on local machine. Put the initial files for the project there.</p>
-<p>3. Open the terminal in the folder and type:</p>
+    <h2>Create a very new repository</h2>
+    <p>1. Go to github and create a new repository. Add name and description.</p>
+    <p>2. Create a folder on local machine. Put the initial files for the project there.</p>
+    <p>3. Open the terminal in the folder and type:</p>
 
-<pre>
+    <pre>
 <code>
 # git init
 # git add .
@@ -23,8 +25,8 @@
 </code>
 </pre>
 
-<p>Copy the lines below from the GitHub repository page you just created:</p>
-<pre>
+    <p>Copy the lines below from the GitHub repository page you just created:</p>
+    <pre>
 <code>
 # git remote add origin https://github.com/vjpelissari/flixx-app.git
 # git branch -M main
@@ -32,21 +34,19 @@
 </code>
 </pre>
 
-<h2>Clone</h2>
-<pre>
+    <h2>Clone</h2>
+    <pre>
 <code>
 # git clone "git repo url"
 </code>
 </pre>
 
-<h2>Clone the Repository Using the Token</h2>
-<pre>
-<code>
-# git clone https://YOUR-TOKEN@github.com/vjpelissari/zoneamentos-api.git
-</pre>
+    <h2>Clone the Repository Using the Token</h2>
 
-<h2>Commits</h2>
-<pre>
+    <pre><code># git clone https://YOUR-TOKEN@github.com/vjpelissari/zoneamentos-api.git</code></pre>
+
+    <h2>Commits</h2>
+    <pre>
 <code>
 # git add .
 # git commit -m "Commit description"
@@ -54,16 +54,16 @@
 </code>
 </pre>
 
-<h2>Fetch</h2>
-<pre>
+    <h2>Fetch</h2>
+    <pre>
 <code>
 # git fetch origin
 # git merge origin/main
 </code>
 </pre>
 
-<h2>Check if the branch is a commit behind</h2>
-<pre>
+    <h2>Check if the branch is a commit behind</h2>
+    <pre>
 <code>
 # git fetch origin
 # git status
@@ -71,12 +71,13 @@
 </code>
 </pre>
 
-<h2>Check last commit log</h2>
-<pre>
+    <h2>Check last commit log</h2>
+    <pre>
 <code>
 # git log -1
 </code>
 </pre>
 
 </body>
+
 </html>
