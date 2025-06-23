@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certbot Installation Guide</title>
+    <link rel="stylesheet" href="content-styles.css">
+</head>
+<body>
+    <h1 id="letsencrypt">Install Certbot Using Snap</h1>
+
+   <pre>
+1. Remova qualquer instalação antiga (opcional)
+sudo apt remove certbot
+
+2. Instale o Snapd (caso ainda não tenha)
+sudo apt update
+sudo apt install snapd
+
+3. Atualize o Snapd
+sudo snap install core
+sudo snap refresh core
+
+4. Instale o Certbot via Snap
+sudo snap install --classic certbot
+
+5. Crie um link simbólico para facilitar o uso
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
+6. Use com Nginx
+Para emitir um certificado SSL com Certbot para o Nginx:
+sudo certbot --nginx
+Siga as instruções interativas.
+
+7. Renovação automática
+O snap já configura automaticamente o certbot para rodar e renovar os certificados.
+
+8. Para verificar se a renovação está configurada:
+sudo systemctl list-timers | grep certbot
+tem que aparecer:
+snap.certbot.renew.timer  ...  certbot renew ...
+
+   </pre>
+	
+</body>
+</html>

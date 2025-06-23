@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy Node JS on Digital Ocean</title>
+    <link rel="stylesheet" href="content-styles.css">
+</head>
+
+<body>
+    <h1 id="nginx">NGINX</h1>
+
+    <p>In digital ocean I have setup the following:</p>
+
+    <p>1. Folder /etc/nginx/sites-enabled:</p>
+    <p>simbolic link: site.conf -> /etc/nginx/sites-available/site.conf</p>
+    <p>2. Folder /etc/nginx/sites-avaiable:</p>
+    <p>create a file site.conf with the code:</p>
+    <pre><code>
+        server {
+            server_name vintech.lat www.vintech.lat;
+    
+            location /pmvv {
+                    proxy_pass http://localhost:3000; # Forward traffic to your backend server
+                    proxy_http_version 1.1;
+                    proxy_set_header Upgrade $http_upgrade;
+                    proxy_set_header Connection 'upgrade';
+                    proxy_set_header Host $host;
+                    proxy_cache_bypass $http_upgrade;
+            }
+    
+            # Configuration for /devcamper
+            location /devcamper {
+                    proxy_pass http://localhost:5000; # Forward traffic to your devcamper app
+                    proxy_http_version 1.1;
+                    proxy_set_header Upgrade $http_upgrade;
+                    proxy_set_header Connection 'upgrade';
+                    proxy_set_header Host $host;
+                    proxy_cache_bypass $http_upgrade;
+            }
+    }
+    </code>
+    </pre>
+    <p>It´s was before let´s encrypt setup.</p>
+</body>
